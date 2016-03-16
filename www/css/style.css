@@ -1,0 +1,26 @@
+body
+{
+	//background:purple;
+}
+
+div
+{
+	font-style:italic;
+}
+
+span
+{
+	font-style:initial;
+}
+
+h2
+{
+	background:orange;
+	
+}
+
+h3
+{
+	background:lightgray;
+	color:navy;
+}
