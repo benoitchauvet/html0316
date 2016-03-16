@@ -2,15 +2,16 @@
 <html>
 <head>
 	<title>Balises sémantiques</title>
-
 	<meta charset="UTF-8"/>
+
+	<link rel="stylesheet" type="text/css" href="/css/news.css"/>
 </head>
 
 <body>
 
 <div id="main">
 
-<header>
+<header id="entetePrincipal">
     <h1>My Website</h1>
 </header>
 <nav>
@@ -21,7 +22,7 @@
         <li><a href="#">menu</a></li>
     </ul>
 </nav>
-    <section>
+    <section id="section1">
         <header>
             <h2>Section 1</h2>
         </header>
@@ -29,15 +30,15 @@
             <h3>Article...</h3>
             <p>
                 <img src="/images/robot.jpg" alt="robot" />
+                Résumé de cet article <a class="reference" href="#">lien hypertexte</a> Résumé de cet article Résumé de cet article
                 Résumé de cet article Résumé de cet article Résumé de cet article
-                Résumé de cet article Résumé de cet article Résumé de cet article
-                Résumé de cet article Résumé de cet article Résumé de cet article
+                Résumé de cet <a class="reference" href="#">lien hypertexte</a> article Résumé de cet article Résumé de cet article
                 Résumé de cet article Résumé de cet article Résumé de cet article
             </p>
         </article>
         <article>
             <h3>Article...</h3>
-            <p>
+            <p class="reference">
                 <img src="/images/robot.jpg" alt="robot" />
                 Résumé de cet article Résumé de cet article Résumé de cet article
                 Résumé de cet article Résumé de cet article Résumé de cet article
@@ -89,7 +90,7 @@
 </section>
 
 
-    <section>
+    <section id="section2">
         <header>
             <h2>Section 2</h2>
         </header>
