@@ -1,3 +1,15 @@
 XAMPP : 
 
 https://www.apachefriends.org/fr/index.html
+
+Flexbox :
+
+http://www.alsacreations.com/tuto/lire/1493-css3-flexbox-layout-module.html
+
+CanIUse :
+
+http://caniuse.com
+
+AutoPrefixer :
+
+https://autoprefixer.github.io/
