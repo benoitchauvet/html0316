@@ -44,10 +44,15 @@ document.querySelector("article").appendChild(p.cloneNode(true));
 
 
 // suppression d'éléments :
-/*
+
 var header = document.querySelector("#main>header");
 
 var ps = document.querySelectorAll("#main>header p");
+
+var psa = Array.from(ps);
+psa.forEach(function(child){
+   header.removeChild(child); 
+});
 
 for (var i = 0; i < ps.length; i++)
   {
@@ -56,7 +61,7 @@ for (var i = 0; i < ps.length; i++)
     var child = ps[i];
     header.removeChild(child);
   }
-*/
+
 
 
 
