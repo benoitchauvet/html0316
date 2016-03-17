@@ -41,12 +41,12 @@ nav>ul li a{
         color:#5477cf;
     }
 
-#main > section{
-    background:#a1b7ee;
-    color:#172853;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-around;
+#main > section {
+    background: #a1b7ee;
+    color: #172853;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 #main > section > header
@@ -78,5 +78,10 @@ article img{
 #section2
 {
 	
+}
+
+.surbrillance
+{
+    background-color:hotpink;
 }
 
