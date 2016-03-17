@@ -46,7 +46,7 @@ nav>ul li a{
     color: #172853;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 #main > section > header
@@ -56,12 +56,13 @@ nav>ul li a{
 }
 
 article{
-    clear:both;
+    _clear:both;
     width:350px;
     height:350px;
     overflow:hidden;
     text-align:justify;
     border:1px aliceblue solid;
+    margin:5px;
 }
 
 article img{

@@ -3,14 +3,11 @@
 <head>
 	<title>Balises sémantiques</title>
 	<meta charset="UTF-8"/>
-
 	<link rel="stylesheet" type="text/css" href="/css/news.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/popup.css"/>
 </head>
-
 <body>
-
 <div id="main">
-
 <header id="entetePrincipal">
     <h1>My Website</h1>
 </header>
@@ -21,6 +18,8 @@
         <li><a href="#">menu</a></li>
         <li><a href="#">menu</a></li>
     </ul>
+	
+	<button id="btnOk">Cliquez ici</button>
 </nav>
     <section id="section1">
         <header>
@@ -160,7 +159,16 @@
 
 </div>
 
+	<script type="application/javascript" src="/js/popup.js"></script>
 
+	<script>
+	
+	
+		document.getElementById("btnOk").addEventListener("click", function(){ 
+			popup("Ceci est un message");
+		});
+	
+	</script>
 
 </body>
 </html>
