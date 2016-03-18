@@ -35,12 +35,17 @@ switch ($region) {
 		{ "id":"84", "nom":"Vaucluse" }
 		]}';
         break;
-		 case "bretagne":
+	case "bretagne":
 		echo '{"departements": [
 		{ "id":"29", "nom":"Finistère" },
 		{ "id":"22", "nom":"Côtes d\'Armor" },
 		{ "id":"35", "nom":"Ille et Vilaine" },
 		{ "id":"56", "nom":"Morbihan" }
+		]}';
+		break;
+	default:
+		echo '{"departements": [
+		{ "id":"0", "nom":"pas de departement" }
 		]}';
 		break;
 }

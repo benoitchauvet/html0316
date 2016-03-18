@@ -10,6 +10,7 @@
 			width:24px;
 			height:24px;
 			vertical-align:bottom;
+			visibility:hidden;
 		}
 	</style>
 </head>
@@ -28,8 +29,80 @@
 
 <script type="text/javascript">
 
-document.getElementById("wait").visible = false;
+window.onload = function(){
 
+		function chargerDepartements()
+		{
+			// affichage du curseur d'attente :
+			document.getElementById("wait").style.visibility = "visible";
+
+			var r2 = new XMLHttpRequest();
+			
+			r2.open('GET', 'departements.php?region=' + listeRegions.value, true);
+			
+			r2.onreadystatechange = function()
+			{
+				if (r2.readyState == 4)
+				{
+					if (r2.status == 200)
+					{
+						var reponse = JSON.parse(r2.responseText);
+					
+						// vider la liste des départements :
+						listeDepartements.innerHTML = "";
+					
+						reponse.departements.forEach(function(departement){
+							var opt = document.createElement("option");
+							opt.value = departement.id;
+							opt.innerHTML = departement.nom;
+							listeDepartements.appendChild(opt);
+						});
+						// masquer l'icone d'attente :
+						document.getElementById("wait").style.visibility = "hidden";
+					}
+				}
+			};
+			
+			r2.send();
+		}
+
+	var listeRegions = document.getElementById("regions");
+	var listeDepartements = document.getElementById("departements");
+
+	// chargement initial de la liste des regions :
+	
+	var r1 = new XMLHttpRequest();
+	
+	r1.open('GET', 'regions.php', true);
+	
+	r1.onreadystatechange = function(){
+		if (r1.readyState == 4)
+		{
+			if (r1.status == 200)
+			{
+				var reponse = JSON.parse(r1.responseText);
+				// remplissage de la liste des régions :
+				reponse.regions.forEach(function(region){
+					var opt =document.createElement("option");
+					opt.setAttribute("value", region.id);
+					opt.innerHTML = region.nom;
+					listeRegions.appendChild(opt);
+				});
+				
+				// ajout d'un gestionnaire d'événements sur changement 
+				// dans la liste des regions :
+				listeRegions.onchange = function()
+				{
+					// charger liste departements :
+					chargerDepartements();
+				}
+			}
+		}
+	
+	};
+	
+	r1.send();
+};
 
 </script>
 
