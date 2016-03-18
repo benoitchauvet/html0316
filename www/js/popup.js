@@ -1,4 +1,6 @@
-function popup(message)
+"use strict";
+
+function popup(message, titre = 'Boîte de dialogue')
 {
 	var fond = document.createElement("div");
 	fond.classList.add("fondPopup");
@@ -7,8 +9,12 @@ function popup(message)
 	fenetre.classList.add("popup");
 	
 	var h2 = document.createElement("h2");
-	h2.innerHTML = message; 
+	h2.innerHTML = titre; 
 	fenetre.appendChild(h2);
+	
+	var p = document.createElement("p");
+	p.innerHTML = message; 
+	fenetre.appendChild(p);
 	
 	var btn = document.createElement("button");
 	btn.innerHTML = "OK"; 

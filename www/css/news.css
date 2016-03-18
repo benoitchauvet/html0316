@@ -1,3 +1,9 @@
+body,
+button
+{
+    font-family:Helvetica, sans-serif;
+}
+
 #main
 {
 	_background-image:url('/images/bg.jpg');
@@ -51,14 +57,16 @@ nav>ul li a{
 
 #main > section > header
 {
+    padding: 0 10px;
     flex-grow:1;
     flex-basis:100%;
 }
 
 article{
+    padding:5px 10px;
     _clear:both;
     width:350px;
-    height:350px;
+    height:300px;
     overflow:hidden;
     text-align:justify;
     border:1px aliceblue solid;
@@ -70,19 +78,3 @@ article img{
     margin-right:5px;
     margin-top:5px;
 }
-
-#section1
-{
-	
-}
-
-#section2
-{
-	
-}
-
-.surbrillance
-{
-    background-color:hotpink;
-}
-
