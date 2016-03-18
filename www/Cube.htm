@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		
+		<title>Cube</title>
+	
+		<style>
+		
+		#conteneur{
+			perspective:2800px; 
+		    width:300px;
+		    height:200px;
+		    margin:100px auto; 
+		}
+		
+		.carre{
+			width:300px;
+		    height:300px;
+		    position:absolute;
+		    line-height:300px;
+		    text-align:center;
+		    font-size:80px;
+		    opacity:0.7;
+		    border:solid 1px black; 
+			border-radius:15px;			
+		}
+		
+		.cote1{
+		   background-color:silver;
+		   z-index:10;
+		   /*
+		   background-image:url('images/logo.png');
+		   background-size: 100% auto; 
+		   background-repeat:no-repeat;
+		   */
+		}
+		
+		.cote2{
+		   background-color:blue;
+		   transform:translateZ(-150px) translateX(150px) rotateY(90deg);
+		   
+		}
+		.cote3{
+		   background-color:red;
+		   transform:translateZ(-150px) translateX(-150px) rotateY(-90deg);
+		}
+		.cote4{
+		   background-color:yellow;
+		   transform:translateZ(-150px) translateY(150px) rotateX(-90deg);
+		}
+		.cote5{
+		   background-color:green;
+		   transform:translateZ(-150px) translateY(-150px) rotateX(90deg);
+		}
+		.cote6{
+		   background-color:hotpink;
+		   transform:translateZ(-300px);
+		}
+		
+		.parent{
+		   position:relative;
+		   width:300px;
+		   height:300px;
+		   /*animation:AnimCube 5s linear infinite;*/
+		   transform-style: preserve-3d;
+		   transform-origin: 50% 50% 50%;
+		   transition:3s;
+		} 
+		
+		.zzparent:hover
+		{
+			transform-origin: 50% 50%;
+			transform: rotateX(180deg) rotateY(180deg) translateY(-2000px); 			
+			//transform: rotateZ(360deg) rotateY(360deg) rotateX(360deg);
+		}
+		
+		@keyframes AnimCube{
+		   from {}
+		   to{ transform-origin: 50% 50%; transform: rotateZ(360deg)
+				rotateY(360deg) rotateX(360deg); 
+		   }
+		} 
+		
+		.btnUp
+		{
+			position:fixed;
+			top:0px;
+			left:135px;
+			background:red;
+			width:30px;
+			height:30px;
+		}
+		
+		.btnDown
+		{
+			position:fixed;
+			bottom:0px;
+			left:135px;
+			background:red;
+			width:30px;
+			height:30px;
+		}
+		
+		.btnLeft
+		{
+			position:fixed;
+			top:135px;
+			left:0px;
+			background:red;
+			width:30px;
+			height:30px;
+		}
+		
+		.btnRight
+		{
+			position:fixed;
+			top:135px;
+			right:0px;
+			background:red;
+			width:30px;
+			height:30px;
+		}
+		</style>
+	</head>
+	
+	<body>
+	
+	<input value="move !" onclick="move()" type="button">
+	<input value="haut" onclick="h()" type="button">
+	<input value="bas" onclick="b()" type="button">
+	<input value="gauche" onclick="g()" type="button">
+	<input value="droite" onclick="d()" type="button">
+	
+	<div id="conteneur">
+		<div style="transition: all 1s ease 0s; transform: rotateY(540deg) rotateX(720deg);" class="parent" id="de">
+			<div class="carre cote1">
+				1
+				<div class="btnUp" onclick="h()"></div>
+				<div class="btnDown" onclick="b()"></div>
+				<div class="btnLeft" onclick="g()"></div>
+				<div class="btnRight" onclick="d()"></div>
+			</div>
+			<div class="carre cote2">
+				2
+				<div class="btnUp" onclick="h()"></div>
+				<div class="btnDown" onclick="b()"></div>
+				<div class="btnLeft" onclick="g()"></div>
+				<div class="btnRight" onclick="d()"></div>
+			</div>
+			<div class="carre cote3">
+				3
+				<div class="btnUp" onclick="h()"></div>
+				<div class="btnDown" onclick="b()"></div>
+				<div class="btnLeft" onclick="g()"></div>
+				<div class="btnRight" onclick="d()"></div>
+
+			</div>
+			<div class="carre cote4">
+				4
+				<div class="btnUp" onclick="h()"></div>
+				<div class="btnDown" onclick="b()"></div>
+				<div class="btnLeft" onclick="g()"></div>
+				<div class="btnRight" onclick="d()"></div>
+			</div>
+			<div class="carre cote5">
+				5
+				<div class="btnUp" onclick="h()"></div>
+				<div class="btnDown" onclick="b()"></div>
+				<div class="btnLeft" onclick="g()"></div>
+				<div class="btnRight" onclick="d()"></div>
+			</div>
+			<div class="carre cote6">
+				6
+				<div class="btnUp" onclick="h()"></div>
+				<div class="btnDown" onclick="b()"></div>
+				<div class="btnLeft" onclick="g()"></div>
+				<div class="btnRight" onclick="d()"></div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+	
+		var x = 0;
+		var y = 0;
+		var z = 0;
+	
+		function move()
+		{
+			x += 45;
+			y += 45;
+			z += 45;
+			var de = document.getElementById('de');
+			de.style.transition = '1s';
+			de.style.transform = 'rotateX(' + x + 'deg) rotateY(' + y + 'deg) rotateZ(' + z + 'deg) translateY(-200px)';
+		}
+		
+		function h()
+		{
+			x += 45;
+			var de = document.getElementById('de');
+			de.style.transition = '1s';
+			de.style.transform = 'rotateY(' + y + 'deg) rotateX(' + x + 'deg)';
+		}
+		function b()
+		{
+			x -= 45;
+			var de = document.getElementById('de');
+			de.style.transition = '1s';
+			de.style.transform = 'rotateY(' + y + 'deg) rotateX(' + x + 'deg)';
+		}
+		function g()
+		{
+			y += 45;
+			var de = document.getElementById('de');
+			de.style.transition = '1s';
+			de.style.transform = 'rotateY(' + y + 'deg) rotateX(' + x + 'deg)';
+		}
+		function d()
+		{
+			y -= 45;
+			var de = document.getElementById('de');
+			de.style.transition = '1s';
+			de.style.transform = 'rotateY(' + y + 'deg) rotateX(' + x + 'deg)';
+		}
+		
+		
+	
+	</script>
+	
+	
+</body></html>

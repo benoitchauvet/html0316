@@ -9,10 +9,19 @@
 	left:50%;
 	margin-left:-200px;
 	margin-top:-125px;
-	z-index:99;
+	z-index:199;
 	opacity:1;
 	text-align:center;
 	padding:0;
+	border-radius:10px;
+	box-shadow:10px 10px 10px #333333;
+	border-style: solid; 
+    border-width: 86px 86px 88px 87px; 
+    -moz-border-image: url(http://www.magadamdeco.fr/images/cadre-photo.png) 86 86 88 87 stretch; 
+    -webkit-border-image: url(http://www.magadamdeco.fr/images/cadre-photo.png) 86 86 88 87 stretch; 
+    -o-border-image: url(http://www.magadamdeco.fr/images/cadre-photo.png) 86 86 88 87 stretch; 
+    border-image: url(http://www.magadamdeco.fr/images/cadre-photo.png) 86 86 88 87 fill stretch;
+	animation:mouvement 4s;
 }
 
 .popup h2
@@ -22,7 +31,7 @@
 	background:#294790;
 	color:aliceblue;
 	text-align:left;
-	padding:5px 10px;
+	padding:0px 10px;
 }
 
 .popup p

@@ -21,7 +21,6 @@ function popup(message, titre = 'Boîte de dialogue')
 	fenetre.appendChild(btn);
 	document.querySelector("body").appendChild(fond);
 	document.querySelector("body").appendChild(fenetre);
-	
 
 	btn.addEventListener('click', function(evt){
 		

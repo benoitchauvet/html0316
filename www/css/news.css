@@ -2,6 +2,7 @@ body,
 button
 {
     font-family:Helvetica, sans-serif;
+    perspective:1000px;
 }
 
 #main
@@ -28,7 +29,6 @@ button
 
 nav > ul{
     padding:0;
-    
     display:flex;
 }
 
@@ -40,12 +40,23 @@ nav>ul li a{
     padding:5px;
     color:aliceblue;
     text-decoration:none;
+    transition : all 2s;
 }
 
     nav > ul li a:hover {
         background:aliceblue;
         color:#5477cf;
+        font-size:1.5em;
     }
+
+@media screen and (max-width:800px)
+{
+    nav > ul{
+    display:block;
+    }
+}
+
+
 
 #main > section {
     background: #a1b7ee;
@@ -72,10 +83,58 @@ article{
     text-align:justify;
     border:1px aliceblue solid;
     margin:5px;
+    transition : all 0.5s;
+    }
+
+
+
+article:hover
+{
+   transform:rotate(1080deg) scaleX(1.5) scaleY(1.5);
+}
+
+
+@keyframes mouvement
+{
+    0%
+    {
+        top:0;
+        left:0;
+        background-color:#1afb09;
+    }
+
+    40%
+    {
+        top:10%;
+        left:80%;
+    }
+
+    80%
+    {
+        top:80%;
+        left:30%;
+    }
+
+    100%
+    {
+        top:50%;
+        left:50%;
+        background-color:#fb09f6;
+        transform:rotateX(1080deg);
+    }
 }
 
 article img{
     float:left;
     margin-right:5px;
     margin-top:5px;
+}
+
+
+@media print
+{		
+	button,nav
+	{
+		display:none;		
+	}
 }
