@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>APIs</title>
+	<meta charset="UTF-8"/>
+	
+	
+</head>
+<body>
+
+<div id="geoloc">
+
+</div>
+
+<div id="storage">
+
+
+ <input type="text" id="txtNom" placeholder="votre nom..."/>
+ <input type="button" id="btnOk" onclick="enregistrer()">Enregistrer</input>
+<p id="bla"></p>
+</div>
+
+<script type="application/javascript">
+
+if (window.localStorage.nomUtilisateur)
+{
+	document.getElementById("bla").innerHTML = "bonjour " + window.localStorage.nomUtilisateur.moi;
+}
+
+
+
+function enregistrer()
+{
+	var nom = document.getElementById("txtNom").value;
+
+	window.localStorage.nomUtilisateur = {moi:nom};
+}
+
+
+if (navigator.geolocation)
+{
+	navigator.geolocation.getCurrentPosition(function(pos){
+	
+		var div = document.getElementById('geoloc');
+	
+		div.innerHTML = pos.coords.latitude + " - " + pos.coords.longitude;
+	
+	},
+	function(){
+		div.innerHTML = 'erreur geoloc';
+	}
+	);
+
+
+}
+</script>
+
+</body>
+</html>
