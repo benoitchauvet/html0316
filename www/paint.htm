@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<title>Paint it !</title>
+		<meta charset="utf-8">
+		
+		
+		
+		<style>
+		body {
+			text-align:center; 
+			background:#e9e9e9
+		}
+
+		h1 {
+			text-transform:uppercase; 
+			font-family:Verdana; 
+			color:#000
+		}
+
+		#canvas {
+			border:5px ridge #999; 
+			border-radius:2px; 
+			margin:0 auto 20px auto; 
+			display:block; 
+			background:#fff; 
+			cursor:crosshair
+		}
+
+		#couleurs {
+			list-style:none; 
+			margin:0 0 20px 0; 
+			padding:0
+		}
+		#couleurs li {
+			display:inline-block
+		}
+
+		#couleurs a {
+			display:inline-block; 
+			width:30px; 
+			height:30px; 
+			margin-right:10px; 
+			text-indent:-4000px;
+			overflow:hidden; 
+			border-radius:50%
+		}
+
+		#couleurs a.actif {
+			border:2px solid #000; 
+			width:26px; 
+			height:26px
+		}
+		</style>
+    </head>
+    <body>
+		<h1>Paint it</h1>
+		
+        <canvas id="canvas" width="600" height="400"></canvas>
+		
+		<ul id="couleurs">
+			<li><a style="background: rgb(0, 0, 0) none repeat scroll 0% 0%;" href="#" data-couleur="#000000" class="actif">Noir</a></li>
+			<li><a style="background: rgb(255, 255, 255) none repeat scroll 0% 0%;" href="#" data-couleur="#ffffff">Blanc</a></li>
+			<li><a style="background: rgb(255, 0, 0) none repeat scroll 0% 0%;" href="#" data-couleur="#ff0000">Rouge</a></li>
+			<li><a style="background: brown none repeat scroll 0% 0%;" href="#" data-couleur="brown">Marron</a></li>
+			<li><a style="background: orange none repeat scroll 0% 0%;" href="#" data-couleur="orange">Orange</a></li>
+			<li><a style="background: yellow none repeat scroll 0% 0%;" href="#" data-couleur="yellow">Jaune</a></li>
+			<li><a style="background: green none repeat scroll 0% 0%;" href="#" data-couleur="green">Vert</a></li>
+			<li><a style="background: cyan none repeat scroll 0% 0%;" href="#" data-couleur="cyan">Cyan</a></li>
+			<li><a style="background: blue none repeat scroll 0% 0%;" href="#" data-couleur="blue">Bleu</a></li>
+			<li><a style="background: indigo none repeat scroll 0% 0%;" href="#" data-couleur="indigo">Indigo</a></li>
+			<li><a style="background: Violet none repeat scroll 0% 0%;" href="#" data-couleur="Violet">Violet</a></li>
+			<li><a style="background: pink none repeat scroll 0% 0%;" href="#" data-couleur="pink">Rose</a></li>
+		</ul>
+		
+		<form id="largeurs_pinceau">
+			<label for="largeur_pinceau">Largeur du pinceau :</label>
+			<input id="largeur_pinceau" min="2" max="50" value="2" type="range">
+			<output id="output">5 pixels</output>
+			<br>
+			<label for="opacite">Opacité :</label>
+			<input id="opacite" min="0" max="10" value="6" type="range">
+			<br>
+			<input id="fillColor" value="#fa05cf" type="color">
+			<input id="fill" value="Remplir" type="button">
+			<br>
+			
+			<input id="reset" value="Réinitialiser" type="reset">
+			<input id="save" value="Sauvergarder mon image" type="button">
+		</form>
+		
+		<p>
+			<a href="http://www.html5canvastutorials.com/">tuto...</a>
+		</p>
+		
+		<script type="text/javascript" src="paint_fichiers/jquery-1.js"></script>
+		
+	  <script>
+	  
+		$(document).ready(function() {
+			
+			// Variables :
+			var color = "#000";
+			var painting = false;
+			var started = false;
+			var width_brush = 5;
+			var canvas = $("#canvas");
+			var cursorX, cursorY;
+			var restoreCanvasArray = [];
+			var restoreCanvasIndex = 0;
+			
+			var context = canvas[0].getContext('2d');
+			
+			// fond blanc :
+			context.fillStyle = "#FFF";
+			context.fillRect(0,0,canvas[0].width,canvas[0].height);
+			
+			// Trait arrondi :
+			context.lineJoin = 'round';
+			context.lineCap = 'round';
+			
+			// Click souris enfoncé sur le canvas, je dessine :
+			canvas.mousedown(function(e) {
+				if (e.button == 0)
+				{
+					painting = true;
+					// Coordonnées de la souris :
+					cursorX = (e.pageX - this.offsetLeft);
+					cursorY = (e.pageY - this.offsetTop);
+				}
+			});
+			
+			// Relachement du Click sur tout le document, j'arrête de dessiner :
+			$(this).mouseup(function() {
+				painting = false;
+				started = false;
+			});
+			
+			// Mouvement de la souris sur le canvas :
+			canvas.mousemove(function(e) {
+				// Si je suis en train de dessiner (click souris enfoncé) :
+				if (painting) {
+					// Set Coordonnées de la souris :
+					cursorX = (e.pageX - this.offsetLeft) - 10; // 10 = décalage du curseur
+					cursorY = (e.pageY - this.offsetTop) - 10;
+					
+					// Dessine une ligne :
+					drawLine();
+				}
+			});
+			
+			// Fonction qui dessine une ligne :
+			function drawLine() {
+				// Si c'est le début, j'initialise
+				if (!started) {
+					// Je place mon curseur pour la première fois :
+					context.beginPath();
+					context.moveTo(cursorX, cursorY);
+					started = true;
+				} 
+				// Sinon je dessine
+				else {
+					context.lineTo(cursorX, cursorY);
+					context.strokeStyle = color;
+					context.lineWidth = width_brush;
+					context.stroke();
+				}
+			}
+			
+			// Clear du Canvas :
+			function clear_canvas() {
+			context.fillStyle = "#FFF";
+			context.fillRect(0,0,canvas[0].width,canvas[0].height);
+			}
+			
+			// Pour chaque carré de couleur :
+			$("#couleurs a").each(function() {
+				// Je lui attribue une couleur de fond :
+				$(this).css("background", $(this).attr("data-couleur"));
+				
+				// Et au click :
+				$(this).click(function() {
+					// Je change la couleur du pinceau :
+					color = $(this).attr("data-couleur");
+					
+					// Et les classes CSS :
+					$("#couleurs a").removeAttr("class", "");
+					$(this).attr("class", "actif");
+					
+					return false;
+				});
+			});
+			
+			// Largeur du pinceau :
+			$("#largeur_pinceau").change(function() {
+				if (!isNaN($(this).val())) {
+					width_brush = $(this).val();
+					$("#output").html($(this).val() + " pixels");
+				}
+			});
+			
+			// Bouton Reset :
+			$("#reset").click(function() {
+				// Clear canvas :
+				clear_canvas();
+				
+				// Valeurs par défaut :
+				$("#largeur_pinceau").attr("value", 5);
+				width_brush = 5;
+				$("#output").html("5 pixels");
+				
+			});
+			
+			// Bouton Save :
+			$("#save").click(function() {
+				//var r = new FileReader();
+				var img = new Image();
+				img.src = canvas[0].toDataURL("image/png");
+				
+				console.log(img.src);
+				$("body").append(img);
+				
+			});
+			
+			// bouton remplir :
+			$("#fill").click(function()
+			{
+				context.closePath();
+				context.fillStyle =  hexToRgba($("#fillColor").val(), $("#opacite").val()/10);
+				context.fill();
+				context.beginPath();
+				context.closePath();
+				//context.stroke();
+			});
+			
+		});
+		
+		function hexToRgba(hexColor, opacite)
+		{
+			var r = parseInt(hexColor.substring(1,3),16);
+			var g = parseInt(hexColor.substring(3,5),16);
+			var b = parseInt(hexColor.substring(5,7),16);
+			var a = 1;
+			if (opacite)
+			{	
+				a = opacite;
+			}
+			return "rgba(" + r + "," + g + "," + b + "," + a +")";
+		}
+		</script>
+	
+		
+
+</body></html>
